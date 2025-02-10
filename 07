@@ -1,0 +1,21 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Loop para exibir as tabuadas do 5 ao 10
+        for (int num = 5; num <= 10; num++)
+        {
+            Console.WriteLine($"\nTabuada do {num}:");
+            
+            for (int i = 1; i <= 10; i++) // Multiplica de 1 a 10
+            {
+                Console.WriteLine($"{num} x {i} = {num * i}");
+            }
+        }
+
+        Console.WriteLine("\nPressione qualquer tecla para sair...");
+        Console.ReadKey();
+    }
+}
