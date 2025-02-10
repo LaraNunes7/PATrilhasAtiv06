@@ -1,0 +1,37 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Números primos entre 1 e 100:");
+
+        // Loop para verificar todos os números de 2 a 100
+        for (int num = 2; num <= 100; num++)
+        {
+            if (EhPrimo(num)) // Verifica se o número é primo
+            {
+                Console.Write(num + " ");
+            }
+        }
+
+        Console.WriteLine("\n\nPressione qualquer tecla para sair...");
+        Console.ReadKey();
+    }
+
+    // Função que verifica se um número é primo
+    static bool EhPrimo(int num)
+    {
+        // Números menores que 2 não são primos
+        if (num < 2) return false;
+
+        // Verifica se o número é divisível por qualquer número de 2 até a raiz quadrada de num
+        for (int i = 2; i <= Math.Sqrt(num); i++)
+        {
+            if (num % i == 0)
+                return false;
+        }
+
+        return true; // Se não for divisível por nenhum número, é primo
+    }
+}
