@@ -1,0 +1,141 @@
+using System;
+
+class Program
+{
+    // Definindo uma estrutura de mercadoria
+    struct Mercadoria
+    {
+        public string nome;
+        public int quantidade;
+        public double precoUnitario;
+    }
+
+    static void Main()
+    {
+        Mercadoria[] estoque = new Mercadoria[40];
+        int opcao;
+        int indice = 0; // Variável para controlar a quantidade de mercadorias cadastradas
+
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("Sistema de Controle de Estoque");
+            Console.WriteLine("1. Adicionar mercadoria");
+            Console.WriteLine("2. Exibir estoque");
+            Console.WriteLine("3. Atualizar mercadoria");
+            Console.WriteLine("4. Remover mercadoria");
+            Console.WriteLine("5. Sair");
+            Console.Write("\nEscolha uma opção: ");
+            opcao = int.Parse(Console.ReadLine());
+
+            switch (opcao)
+            {
+                case 1:
+                    AdicionarMercadoria(ref estoque, ref indice);
+                    break;
+                case 2:
+                    ExibirEstoque(estoque, indice);
+                    break;
+                case 3:
+                    AtualizarMercadoria(estoque, indice);
+                    break;
+                case 4:
+                    RemoverMercadoria(ref estoque, ref indice);
+                    break;
+                case 5:
+                    Console.WriteLine("Saindo...");
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida!");
+                    break;
+            }
+
+            if (opcao != 5)
+            {
+                Console.WriteLine("\nPressione qualquer tecla para continuar...");
+                Console.ReadKey();
+            }
+
+        } while (opcao != 5);
+    }
+
+    // Método para adicionar uma mercadoria
+    static void AdicionarMercadoria(ref Mercadoria[] estoque, ref int indice)
+    {
+        if (indice >= 40)
+        {
+            Console.WriteLine("\nEstoque cheio! Não é possível adicionar mais mercadorias.");
+            return;
+        }
+
+        Console.Write("\nDigite o nome da mercadoria: ");
+        estoque[indice].nome = Console.ReadLine();
+        Console.Write("Digite a quantidade em estoque: ");
+        estoque[indice].quantidade = int.Parse(Console.ReadLine());
+        Console.Write("Digite o preço unitário: ");
+        estoque[indice].precoUnitario = double.Parse(Console.ReadLine());
+
+        indice++;
+        Console.WriteLine("\nMercadoria adicionada com sucesso!");
+    }
+
+    // Método para exibir o estoque
+    static void ExibirEstoque(Mercadoria[] estoque, int indice)
+    {
+        if (indice == 0)
+        {
+            Console.WriteLine("\nNenhuma mercadoria cadastrada.");
+            return;
+        }
+
+        Console.WriteLine("\nEstoque:");
+        for (int i = 0; i < indice; i++)
+        {
+            Console.WriteLine($"ID: {i + 1} - Nome: {estoque[i].nome} | Quantidade: {estoque[i].quantidade} | Preço Unitário: R${estoque[i].precoUnitario:F2}");
+        }
+    }
+
+    // Método para atualizar uma mercadoria
+    static void AtualizarMercadoria(Mercadoria[] estoque, int indice)
+    {
+        Console.Write("\nDigite o ID da mercadoria a ser atualizada: ");
+        int id = int.Parse(Console.ReadLine()) - 1;
+
+        if (id < 0 || id >= indice)
+        {
+            Console.WriteLine("ID inválido!");
+            return;
+        }
+
+        Console.Write("\nDigite o novo nome da mercadoria: ");
+        estoque[id].nome = Console.ReadLine();
+        Console.Write("Digite a nova quantidade em estoque: ");
+        estoque[id].quantidade = int.Parse(Console.ReadLine());
+        Console.Write("Digite o novo preço unitário: ");
+        estoque[id].precoUnitario = double.Parse(Console.ReadLine());
+
+        Console.WriteLine("\nMercadoria atualizada com sucesso!");
+    }
+
+    // Método para remover uma mercadoria
+    static void RemoverMercadoria(ref Mercadoria[] estoque, ref int indice)
+    {
+        Console.Write("\nDigite o ID da mercadoria a ser removida: ");
+        int id = int.Parse(Console.ReadLine()) - 1;
+
+        if (id < 0 || id >= indice)
+        {
+            Console.WriteLine("ID inválido!");
+            return;
+        }
+
+        // Desloca os elementos do estoque para "remover" a mercadoria
+        for (int i = id; i < indice - 1; i++)
+        {
+            estoque[i] = estoque[i + 1];
+        }
+
+        indice--;
+        Console.WriteLine("\nMercadoria removida com sucesso!");
+    }
+}
