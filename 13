@@ -1,0 +1,21 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Cria um vetor de números decimais
+        decimal[] vetor = new decimal[] { 10.5m, 20.8m, 30.2m, 40.6m, 50.9m };
+
+        // Calcula a média dos valores do vetor
+        decimal soma = 0;
+        foreach (decimal valor in vetor)
+        {
+            soma += valor;
+        }
+        decimal media = soma / vetor.Length;
+
+        // Imprime a média
+        Console.WriteLine("Média: " + media.ToString("F2"));
+    }
+}
