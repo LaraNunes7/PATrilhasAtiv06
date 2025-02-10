@@ -1,0 +1,23 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Cria um vetor de inteiros
+        int[] vetor = new int[] { 10, 20, 30, 40, 50 };
+
+        // Encontra o maior valor no vetor
+        int maiorValor = vetor[0];
+        foreach (int valor in vetor)
+        {
+            if (valor > maiorValor)
+            {
+                maiorValor = valor;
+            }
+        }
+
+        // Imprime o maior valor
+        Console.WriteLine("Maior valor: " + maiorValor);
+    }
+}
