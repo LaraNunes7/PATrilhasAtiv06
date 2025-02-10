@@ -1,0 +1,30 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Cria um vetor de inteiros
+        int[] vetor = { 10, 20, 30, 40, 50 };
+
+        // Imprime o vetor original
+        Console.WriteLine("Vetor original:");
+        foreach (int valor in vetor)
+        {
+            Console.Write(valor + " ");
+        }
+        Console.WriteLine();
+
+        // Ordena o vetor em ordem decrescente
+        int[] vetorOrdenado = vetor.OrderByDescending(x => x).ToArray();
+
+        // Imprime o vetor ordenado
+        Console.WriteLine("Vetor ordenado em ordem decrescente:");
+        foreach (int valor in vetorOrdenado)
+        {
+            Console.Write(valor + " ");
+        }
+        Console.WriteLine();
+    }
+}
